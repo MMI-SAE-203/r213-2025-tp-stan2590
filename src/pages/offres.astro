@@ -1,11 +1,9 @@
 ---
-import Base from '../layouts/Base.astro';
+import Base from '../layouts/base.astro';
 import Footer from '../components/footer.astro';
----
+import Card from '../components/card.astro';
 
-<Base titre="offres">
-    <h1>offres</h1>
-    const offres = [
+export const offres = [
     {
         "adresse": "2821 Lake Sevilla, Palm Harbor, TX",
         "favori": true,
@@ -39,12 +37,48 @@ import Footer from '../components/footer.astro';
         "surface": 80,
         "imgUrl": "image3.png"
     }
-]
-<div>
+];
+---
+
+<Base titre="Offres">
+    <h1>Offres</h1>
+
+
     <ul>
         {offres.map((offre) => (
-            <li key={offre.id}>{offre.nomMaison}</li>
+            <li ={offre.id}>{offre.nomMaison}</li>
         ))}
     </ul>
-</div>
+
+    
+    <div x-data="{ showFavorites: false }" class="offres-container">
+       
+        <button @click="showFavorites = !showFavorites" class="filter-button">
+            <span x-show="!showFavorites">Afficher les favoris</span>
+            <span x-show="showFavorites">Afficher tout</span>
+        </button>
+
+       
+        <div x-show="!showFavorites">
+            {offres.map((offre) => <Card {...offre} />)}
+        </div>
+
+        
+        <div x-show="showFavorites">
+            {offres.map((offre) => offre.favori &&  <Card {...offre} />)}
+        </div>
+    </div>
+
+    <Footer />
 </Base>
+
+<style>
+.offres-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+
