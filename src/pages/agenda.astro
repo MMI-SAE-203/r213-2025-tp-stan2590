@@ -1,0 +1,26 @@
+---
+import layout from "../layouts/base.astro" ;
+
+const events = [
+ {
+     title: "Conférence sur les astres",
+     date: "Lundi 12 Juillet",
+     favori: true,
+ },
+ {
+     title: "Atelier sur les étoiles",
+     date: "Mardi 13 Juillet",
+     favori: false,
+ },
+];
+---
+<layout>
+    <h1>Agenda</h1>
+    {events.map((events) => (
+        <div>
+            <h2>{events.title}</h2>
+            <p>{events.date}</p>
+            {events.favori && <p>favori</p>}
+        </div>
+    ))}
+</layout>

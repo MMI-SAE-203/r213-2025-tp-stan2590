@@ -6,6 +6,13 @@ import Footer from '../components/footer.astro';
 ---
 
 <Base titre="Accueil">
-    <h1>Accueil</h1> 
+    <h1>Accueil</h1>
+    <div x-data="{ open: false }">
+        <button @click="open = ! open">Toggle</button>
+     
+        <div x-show="open" x-transition>
+            Hello 👋
+        </div>
+    </div> 
 	
 </Base>
