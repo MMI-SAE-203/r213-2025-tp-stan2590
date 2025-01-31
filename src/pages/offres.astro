@@ -1,54 +1,13 @@
 ---
-import Base from '../layouts/base.astro';
-import Footer from '../components/footer.astro';
-import Card from '../components/card.astro';
+import Base from '../layouts/Base.astro';
+import Card from '../components/Card.astro';
 
-export const offres = [
-    {
-        "adresse": "2821 Lake Sevilla, Palm Harbor, TX",
-        "favori": true,
-        "id": "64l3n8nar836i5j",
-        "nbChambres": 4,
-        "nbSdb": 2,
-        "nomMaison": "Beverly Springfield",
-        "prix": 2700,
-        "surface": 45,
-        "imgUrl": "image1.png"
-    },
-    {
-        "adresse": "2699 Green Valley, Highland Lake",
-        "favori": true,
-        "id": "lo831zeg10hpm9y",
-        "nbChambres": 4,
-        "nbSdb": 2,
-        "nomMaison": "Palm Harbor",
-        "prix": 2095,
-        "surface": 42,
-        "imgUrl": "image2.png"
-    },
-    {
-        "adresse": "909 Woodland St, Michigan, IN",
-        "favori": false,
-        "id": "s1zuhj19x8eb242",
-        "nbChambres": 4,
-        "nbSdb": 3,
-        "nomMaison": "Faulkner Ave",
-        "prix": 4550,
-        "surface": 80,
-        "imgUrl": "image3.png"
-    }
-];
+import { getOffres } from '../js/backend.mjs';
+const offres = await getOffres();
 ---
 
 <Base titre="Offres">
     <h1>Offres</h1>
-
-
-    <ul>
-        {offres.map((offre) => (
-            <li ={offre.id}>{offre.nomMaison}</li>
-        ))}
-    </ul>
 
     
     <div x-data="{ showFavorites: false }" class="offres-container">
@@ -68,17 +27,6 @@ export const offres = [
             {offres.map((offre) => offre.favori &&  <Card {...offre} />)}
         </div>
     </div>
-
-    <Footer />
 </Base>
-
-<style>
-.offres-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-    margin-top: 1rem;
-}
 
 

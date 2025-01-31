@@ -1,7 +1,8 @@
 ---
-import layout from "../layouts/base.astro" ;
+import layout from "../layouts/Base.astro" ;
+import { getEvents} from "../js/backend.mjs" ;
 
-const events = [
+/*const events = [
  {
      title: "Conférence sur les astres",
      date: "Lundi 12 Juillet",
@@ -12,15 +13,18 @@ const events = [
      date: "Mardi 13 Juillet",
      favori: false,
  },
-];
+];*/
+
+const events =await getEvents() ;
+console.log(events) ;
 ---
 <layout>
     <h1>Agenda</h1>
-    {events.map((events) => (
+    {events.map((event) => (
         <div>
-            <h2>{events.title}</h2>
-            <p>{events.date}</p>
-            {events.favori && <p>favori</p>}
+            <h2>{event.title}</h2>
+            <p>{event.date}</p>
+            <p>{event.favori ? "Favori" : "Non favori"}</p>
         </div>
     ))}
 </layout>
