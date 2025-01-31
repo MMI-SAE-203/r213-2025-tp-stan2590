@@ -7,8 +7,8 @@ export async function getOffres() {
         let data = await db.collection('maison').getFullList({
             sort: '-created',
         });
-        data = data.map((event) => {
-            event.img = db.files.getURL(event, event.imgUrl);
+        data = data.map((offre) => {
+            offre.imgUrl = db.files.getURL(offre, offre.image);
             return data;
         });
         return data;

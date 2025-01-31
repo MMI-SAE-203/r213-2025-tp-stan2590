@@ -1,15 +1,15 @@
 ---
 const {...offre}=Astro.props;
 ---
-<li>
-    <div>
-        <img src={offre.imgUrl} alt={offre.nomMaison} />
-        <h2>{offre.nomMaison}</h2>
-        <p>{offre.adresse}</p>
-        <p>{offre.prix} €</p>
-        <p>{offre.surface} m²</p>
-        <p>{offre.nbChambres} chambres</p>
-        <p>{offre.nbSdb} salles de bain</p>
-    </div>
-</li>
+
+<div>
+    <img src={offre.imgUrl} alt={offre.nomMaison} />
+    <h2>{offre.nomMaison}</h2>
+    <p>{offre.adresse}</p>
+    <p>{offre.prix} €</p>
+    <p>{offre.surface} m²</p>
+    <p>{offre.nbChambres} chambres</p>
+    <p>{offre.nbSdb} salles de bain</p>
+</div>
+
 
