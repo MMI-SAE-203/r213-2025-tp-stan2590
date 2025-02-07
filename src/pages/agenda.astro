@@ -1,6 +1,6 @@
 ---
 import layout from "../layouts/Base.astro" ;
-import { getEvents} from "../js/backend.mjs" ;
+import {getEvents} from "../js/backend.mjs" ;
 
 /*const events = [
  {
@@ -15,7 +15,7 @@ import { getEvents} from "../js/backend.mjs" ;
  },
 ];*/
 
-const events =await getEvents() ;
+const events = await getEvents() ;
 console.log(events) ;
 ---
 <layout>

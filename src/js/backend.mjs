@@ -17,3 +17,14 @@ export async function getOffres() {
         return [];
     }
 }
+export async function getEventById(id) {  
+    try {
+        const event = await pb.collection("events").getOne(id);
+        event.img = pb.files.getURL(event, event.imgUrl);
+        //event.date = formatDate(event.date);
+        return event;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}

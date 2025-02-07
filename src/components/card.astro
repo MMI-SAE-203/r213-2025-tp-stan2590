@@ -1,5 +1,6 @@
 ---
 const {...offre}=Astro.props;
+const { id } = Astro.params;
 ---
 
 <div>
@@ -11,5 +12,9 @@ const {...offre}=Astro.props;
     <p>{offre.nbChambres} chambres</p>
     <p>{offre.nbSdb} salles de bain</p>
 </div>
+<a href= 'agenda/${event.id}'' > Plus d'info </a>
 
-
+<script>
+    import { setfavorisEvent } from "../js/backend.mjs";
+    const offre = await getoffre(id);
+    console.log(offre);

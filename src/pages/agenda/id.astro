@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/layout.astro";
+import { getEvent } from "../../js/backend.mjs";
+console.log(Astro.params);
+
+const { id } = Astro.params;
+const event = await getEvent(id);
+
+if (!event) {
+  console.error('event with id ${id} not found') ;
+  return Astro.redirect('/agenda') ;
+
+}
+---
+<layout titre="Agenda">
+    <h1>Agenda</h1>
+    <div>
+        <h2>{event.title}</h2>
+        <p>{event.date}</p>
+        <p>{event.favori ? "Favori" : "Non favori"}</p>
+    </div>
