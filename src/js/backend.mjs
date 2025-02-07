@@ -1,6 +1,6 @@
 import PocketBase from 'pocketbase';
 
-const db = new PocketBase("http://127.0.0.1:8090");
+const db = new PocketBase('http://127.0.0.1:8090/');
 
 export async function getOffres() {
     try {
@@ -9,7 +9,7 @@ export async function getOffres() {
         });
         data = data.map((offre) => {
             offre.imgUrl = db.files.getURL(offre, offre.image);
-            return data;
+            return offre;
         });
         return data;
     } catch (error) {
@@ -17,10 +17,10 @@ export async function getOffres() {
         return [];
     }
 }
-export async function getEventById(id) {  
+export async function getOffre(id) {  
     try {
-        const event = await pb.collection("events").getOne(id);
-        event.img = pb.files.getURL(event, event.imgUrl);
+        const event = await db.collection('maison').getOne(id);
+        event.imgUrl = db.files.getURL(event, event.image);
         //event.date = formatDate(event.date);
         return event;
     } catch (error) {

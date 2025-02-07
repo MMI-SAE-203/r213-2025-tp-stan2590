@@ -4,6 +4,8 @@ import Card from '../../components/Card.astro';
 
 import { getOffres } from '../../js/backend.mjs';
 const offres = await getOffres();
+console.log("offres :",offres);
+
 ---
 
 <Base titre="Offres">
@@ -19,7 +21,7 @@ const offres = await getOffres();
 
        
         <div x-show="!showFavorites">
-            {offres.map((offre) => <Card {...offre} />)}
+            {offres.map((offre) =><Card {...offre} />)}
         </div>
 
         
