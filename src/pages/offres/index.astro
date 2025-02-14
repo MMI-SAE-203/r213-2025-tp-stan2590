@@ -14,7 +14,7 @@ console.log("offres :",offres);
     
     <div x-data="{ showFavorites: false }" class="offres-container">
        
-        <button @click="showFavorites = !showFavorites" class="filter-button">
+        <button @click="showFavorites = !showFavorites" class="filter-button mb-4 px-4 py-2 bg-blue-500 text-white rounded">
             <span x-show="!showFavorites">Afficher les favoris</span>
             <span x-show="showFavorites">Afficher tout</span>
         </button>
