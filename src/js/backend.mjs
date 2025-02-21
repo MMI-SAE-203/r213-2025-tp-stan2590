@@ -62,3 +62,6 @@ export async function filterByPrix(minPrix, maxPrix) {
         return [];
     }
 }
+export async function setFavori(house) {
+    await pb.collection('maison').update(house.id, {favori: !house.favori});
+}

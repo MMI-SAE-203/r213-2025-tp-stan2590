@@ -1,9 +1,12 @@
 ---
+ import { setFavori } from "@src/backend";
 const {nomMaison, nbChambres, nbSdb, prix, surface, favoris, adresse, imgUrl,id} = Astro.props;
 ---
+<script>
+    window.setFavori = setFavori;
+</script>
 
-
-<div x-data={`{favori: ${favoris}}`} class="card p-4 rounded-lg shadow-lg">
+<div x-data={`{favori: ${favoris}, clickFavori() {this.favori = !this.favori; setFavori(${JSON.stringify({id, nomMaison, favoris})});}}`} class="card p-4 rounded-lg shadow-lg">
     <img src={imgUrl} alt={nomMaison} class="w-full h-48 object-cover rounded-t-lg mb-4" />
     <h2 class="text-xl font-bold mb-2">{nomMaison}</h2>
 <!--
@@ -13,7 +16,9 @@ const {nomMaison, nbChambres, nbSdb, prix, surface, favoris, adresse, imgUrl,id}
     <p class="text-gray-700 mb-4">{surface} m²</p>
     <p class="text-green-500 font-semibold mb-1">{prix} €</p>
 -->
-    <button @click="favori = !favori" x-bind:class="favori ? 'bg-yellow-500 hover:bg-yellow-700' : 'bg-blue-500 hover:bg-blue-700'" class="text-white px-4 py-2 rounded">Favori</button>
+<button @click="favori = !favori" x-bind:class="favori ? 'bg-yellow-500 hover:bg-yellow-700' : 'bg-blue-500 hover:bg-blue-700'" class="text-white px-4 py-2 rounded">
+    <img src="/src/assets/favorite.png" alt="Favori" class="w-6 h-6 inline-block" />
+</button>
     <a href={`/offres/${id}`} class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">Voir plus</a>
 </div>
 
